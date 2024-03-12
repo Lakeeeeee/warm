@@ -2,9 +2,8 @@ const { Builder, Browser, By } = require('selenium-webdriver')
 const { add } = require('date-fns')
 
 const tenderService = {
-    async crawl() {
+    async crawlBasic(url) {
         let driver
-        const url = setUrl()
         try {
             driver = await new Builder().forBrowser(Browser.CHROME).build()
             await driver.get(url)
@@ -73,48 +72,48 @@ const tenderService = {
             //await driver.quit()
         }
     },
-}
+    async crawlAdvence(){
 
-async function setUrl() {
-    const startDate = new Date()
-    const endDate = add(new Date(), {
-        days: 7
-    })
+    },
+    async crawlUpdated(){
 
-    let vars = {
-        orgName: '',
-        orgId: '',
-        tenderName: '市',
-        tenderId: '',
-        tenderType: '',
-        tenderWay: '',
-        dateType: 'TENDER_DECLARATION',
-        tenderStartDate: encodeURIComponent(startDate.toLocaleDateString()),
-        tenderEndDate: encodeURIComponent(endDate.toLocaleDateString()),
-        radProctrgCate: '',
-        policyAdvocacy: ''
+    },
+    async setCrawlBasicUrl(urlOptions) {
+        const {
+            orgName = '',
+            orgId = '',
+            tenderName = '',
+            tenderId = '',
+            tenderType = '',
+            tenderWay = '',
+            dateType = '',
+            tenderStartDate = '',
+            tenderEndDate = '',
+            radProctrgCate = '',
+            policyAdvocacy = '',
+        } = urlOptions
+    
+        let url =
+            `https://web.pcc.gov.tw/prkms/tender/common/basic/readTenderBasic?
+         pageSize=50
+         &firstSearch=true
+         &searchType=basic
+         &isBinding=N
+         &isLogIn=N
+         &level_1=on
+         &orgName=${orgName}
+         &orgId=${orgId}
+         &tenderName=${tenderName}
+         &tenderId=${tenderId}
+         &tenderType=${tenderType}
+         &tenderWay=${tenderWay}
+         &dateType=${dateType}
+         &tenderStartDate=${tenderStartDate}
+         &tenderEndDate=${tenderEndDate}
+         &radProctrgCate=${radProctrgCate}
+         &policyAdvocacy=${policyAdvocacy}`.replaceAll(' ', '')
+        return url
     }
-
-    let url =
-        `https://web.pcc.gov.tw/prkms/tender/common/basic/readTenderBasic?
-     pageSize=50
-     &firstSearch=true
-     &searchType=basic
-     &isBinding=N
-     &isLogIn=N
-     &level_1=on
-     &orgName=${vars.orgName}
-     &orgId=${vars.orgId}
-     &tenderName=${vars.tenderName}
-     &tenderId=${vars.tenderId}
-     &tenderType=${vars.tenderType}
-     &tenderWay=${vars.tenderWay}
-     &dateType=${vars.dateType}
-     &tenderStartDate=${vars.tenderStartDate}
-     &tenderEndDate=${vars.tenderEndDate}
-     &radProctrgCate=${vars.radProctrgCate}
-     &policyAdvocacy=${vars.policyAdvocacy}`.replaceAll(' ', '')
-    return url
 }
 
 module.exports = tenderService
