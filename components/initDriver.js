@@ -5,19 +5,16 @@ const fs = require('fs');
 
 async function checkDriver(){
     try {
-        Chrome.getDefaultService()
-        console.log('Get it')
+        console.log(Chrome.Driver)
         const filePath = '../chromedriver.exe'
-        console.log(filePath)
         console.log(path.join(__dirname, filePath))
         
     } catch (error) {
-        console.log('Cant get default service')
+        console.log(error)
         const filePath = '../chromedriver.exe'
         console.log(path.join(__dirname, filePath))
         if(fs.existsSync(path.join(__dirname, filePath))){
             const service = new Chrome.ServiceBuilder(path.join(__dirname, filePath)).build()
-            Chrome.setDefaultService(service)
             console.log('ok')
             return true
         }else{
@@ -42,6 +39,7 @@ async function initDriver(){
                 await new Builder()
                 .forBrowser(Browser.CHROME)
                 .setChromeOptions(options)
+                .setChromeService()
                 .build()
     
             return driver

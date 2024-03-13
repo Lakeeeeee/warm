@@ -7,14 +7,13 @@ const ExcelTool = {
         const worksheet = workbook.addWorksheet('Sheet1')
 
         jsonArray.forEach((item, index)=>{
-            console.log(item)
             for(let i = 0; i < Object.keys(item).length; i++){
                 const values = Object.values(item)
                 worksheet.cell(index + 1, i+1).string(values[i])
             }
         })
 
-        const outputPath = `${process.env.HOME}/Desktop/output.xlsx`; // 預設桌面路径，适用于 macOS 和 Linux
+        const outputPath = `${process.env.HOME}/Desktop/output.xlsx`
         workbook.write(outputPath, (err, stats) => {
             if (err) {
                 console.error(err);

@@ -118,7 +118,6 @@ const tenderService = {
          &tenderEndDate=${tenderEndDate}
          &radProctrgCate=${radProctrgCate}
          &policyAdvocacy=${policyAdvocacy}`.replace(/ /g, '');
-        console.log(url)
          return url
     }
 }

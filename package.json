@@ -22,8 +22,10 @@
   "pkg": {
     "outputPath": "dist",
     "assets": [
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "chromedriver"
     ],
+    
     "targets": ["node18-win-x64"]
   },
   "bin": "index.js"
