@@ -7,7 +7,9 @@ const main = async () => {
     const urlOptions = await clientService.getUrlOptions() //todo
     const urlBasic = await tenderService.setCrawlBasicUrl(urlOptions) //ondoing
     const result = await tenderService.crawlBasic(urlBasic)
+    console.log(result)
     //todo: 彙整成excel 或html
+    
 
     //todo: send email
     

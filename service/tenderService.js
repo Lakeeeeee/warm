@@ -1,11 +1,10 @@
-const { Builder, Browser, By } = require('selenium-webdriver')
-const { add } = require('date-fns')
+const { By } = require('selenium-webdriver')
+const initDriver = require('../components/initDriver.js')
 
 const tenderService = {
     async crawlBasic(url) {
-        let driver
         try {
-            driver = await new Builder().forBrowser(Browser.CHROME).build()
+            const driver = await initDriver.initDriver()
             await driver.get(url)
             await driver.sleep(500)
             const fileCount = await driver.findElement(By.xpath('//*[@id="pagebanner"]/span')).getText()
@@ -112,7 +111,8 @@ const tenderService = {
          &tenderEndDate=${tenderEndDate}
          &radProctrgCate=${radProctrgCate}
          &policyAdvocacy=${policyAdvocacy}`.replaceAll(' ', '')
-        return url
+        console.log(url)
+         return url
     }
 }
 
