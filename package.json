@@ -2,16 +2,29 @@
   "name": "warm",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "start": "node index.js",
+    "build": "pkg ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "date-fns": "^3.4.0",
     "dotenv": "^16.4.5",
-    "selenium-webdriver": "^4.18.1"
-  }
+    "excel4node": "^1.8.2",
+    "selenium-webdriver": "^4.8.1"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "outputPath": "dist",
+    "assets": [
+      "node_modules/**/*"
+    ],
+    "targets": ["node18-win-x64"]
+  },
+  "bin": "index.js"
 }

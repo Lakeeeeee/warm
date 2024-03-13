@@ -10,7 +10,7 @@ const clientService = {
         return {
             orgName: '',
             orgId: '',
-            tenderName: '市',
+            tenderName: '南投',
             tenderId: '',
             tenderType: '',
             tenderWay: '',

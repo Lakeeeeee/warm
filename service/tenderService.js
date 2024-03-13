@@ -7,7 +7,9 @@ const tenderService = {
             const driver = await initDriver.initDriver()
             await driver.get(url)
             await driver.sleep(500)
-            const fileCount = await driver.findElement(By.xpath('//*[@id="pagebanner"]/span')).getText()
+            const fileCount = 
+                await driver.findElement(By.xpath('//*[@id="pagebanner"]/span'))
+                            .getText()
             const pages = Math.ceil(parseInt(fileCount) / 50)
 
             let page = 0
@@ -34,9 +36,12 @@ const tenderService = {
                     for (let j = 0; j < tds.length; j++) {
 
                         if (j == tds.length - 1) {
-                            rowObj[`Column${j + 1}`] = await tds[j].findElement(By.xpath('.//div/a')).getAttribute('href')
+                            rowObj[`Column${j + 1}`] = 
+                                await tds[j].findElement(By.xpath('.//div/a'))
+                                            .getAttribute('href')
                         } else {
-                            rowObj[`Column${j + 1}`] = await tds[j].getText()
+                            rowObj[`Column${j + 1}`] = 
+                                await tds[j].getText()
                         }
 
                     }
@@ -49,7 +54,9 @@ const tenderService = {
                     for (let j = 0; j < tds.length; j++) {
 
                         if (j == tds.length - 1) {
-                            rowObj[`Column${j + 1}`] = await tds[j].findElement(By.xpath('.//div/a')).getAttribute('href')
+                            rowObj[`Column${j + 1}`] = 
+                                await tds[j].findElement(By.xpath('.//div/a'))
+                                            .getAttribute('href')
                         } else {
                             rowObj[`Column${j + 1}`] = await tds[j].getText()
                         }
@@ -110,7 +117,7 @@ const tenderService = {
          &tenderStartDate=${tenderStartDate}
          &tenderEndDate=${tenderEndDate}
          &radProctrgCate=${radProctrgCate}
-         &policyAdvocacy=${policyAdvocacy}`.replaceAll(' ', '')
+         &policyAdvocacy=${policyAdvocacy}`.replace(/ /g, '');
         console.log(url)
          return url
     }
