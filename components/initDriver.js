@@ -1,28 +1,5 @@
 const { Builder, Browser} = require('selenium-webdriver')
 const Chrome = require('selenium-webdriver/chrome')
-const path = require('path');
-const fs = require('fs');
-
-async function checkDriver(){
-    try {
-        console.log(Chrome.Driver)
-        const filePath = '../chromedriver.exe'
-        console.log(path.join(__dirname, filePath))
-        
-    } catch (error) {
-        console.log(error)
-        const filePath = '../chromedriver.exe'
-        console.log(path.join(__dirname, filePath))
-        if(fs.existsSync(path.join(__dirname, filePath))){
-            const service = new Chrome.ServiceBuilder(path.join(__dirname, filePath)).build()
-            console.log('ok')
-            return true
-        }else{
-            console.log('no')
-            return false
-        }
-    }
-}
 
 async function initDriver(){
     try {

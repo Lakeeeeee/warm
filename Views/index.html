@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>智行標案查詢設定頁面</title>
+</head>
+<body>
+<div class="container-sm">
+    <div class="mt-5">
+    <form method="POST" action="/api/saveOptions">
+        <lable>搜尋標案名稱</lable>
+        <input type="text" name="tenderName" value="市">
+        <label>機關名稱</label>
+        <input type="text" name="orgName" value="監察">
+        <button type="submit" class="btn btn-outline-info">儲存搜尋設定</button>
+    </form>
+</div>
+</div>
+</body>
+</html>
+

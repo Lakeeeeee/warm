@@ -10,12 +10,12 @@ const tenderService = {
             const fileCount = 
                 await driver.findElement(By.xpath('//*[@id="pagebanner"]/span'))
                             .getText()
-            const pages = Math.ceil(parseInt(fileCount) / 50)
+            const pages = Math.ceil(parseInt(fileCount) / 50) == 0 ? 1 : Math.ceil(parseInt(fileCount) / 50)
 
-            let page = 0
+            let page = 1
             let result = []
-            
             let heads = await driver.findElements(By.xpath('//*[@id="tpam"]/thead'))
+
             for (let i = 0; i < heads.length; i++) {
                 let rowObj = {}
                 const tds = await heads[i].findElements(By.xpath('.//th'))
@@ -24,6 +24,7 @@ const tenderService = {
                 }
                 result.push(rowObj)
             }
+
             do {
                 await driver.sleep(500)
                 
@@ -60,22 +61,21 @@ const tenderService = {
                         } else {
                             rowObj[`Column${j + 1}`] = await tds[j].getText()
                         }
-
                     }
                     result.push(rowObj)
                 }
                 
-                if (page == pages - 1) {
+                if (page == pages) {
                     return result
                 }
+                
                 const nextPageLink = await driver.findElement(By.xpath("//a[text()='下一頁']"))
                 nextPageLink.click()
                 page++
-            } while (page < pages)
+            } while (page <= pages)
+
         } catch (error) {
             console.log(error)
-        } finally {
-            //await driver.quit()
         }
     },
     async crawlAdvence(){
@@ -117,7 +117,7 @@ const tenderService = {
          &tenderStartDate=${tenderStartDate}
          &tenderEndDate=${tenderEndDate}
          &radProctrgCate=${radProctrgCate}
-         &policyAdvocacy=${policyAdvocacy}`.replace(/ /g, '');
+         &policyAdvocacy=${policyAdvocacy}`.replace(/ /g, '')
          return url
     }
 }
