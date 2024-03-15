@@ -26,4 +26,4 @@ async function initDriver(){
     }
 }
 
-module.exports = { initDriver, checkDriver}
+module.exports = { initDriver}

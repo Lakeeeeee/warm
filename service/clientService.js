@@ -9,7 +9,7 @@ const clientService = {
             days: 7
         })
 
-        const pathx = path.join(__dirname, '../basicUrlData.json')
+        const pathx = path.join(__dirname, '../urlOptions/basicUrlData.json')
         const fileData = fs.readFileSync(pathx, 'utf8')
         const basicUrlData = JSON.parse(fileData)
         
@@ -28,9 +28,9 @@ const clientService = {
         }
     },
     async setBasicUrlOptions(jsonData) {
-        const filePath = './basicUrlData.json';
+        const pathx = path.join(__dirname, '../urlOptions/basicUrlData.json')
         const updatedJsonString = JSON.stringify(jsonData)
-        fs.writeFile(filePath, updatedJsonString, (err) => {
+        fs.writeFile(pathx, updatedJsonString, (err) => {
             if (err) {
                 console.error('Error writing file:', err);
                 return false
